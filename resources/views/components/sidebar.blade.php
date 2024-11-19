@@ -4,7 +4,7 @@
     p-4 flex flex-col justify-between"
 >
     <div>
-        <h2 class="text-xl font-bold">Menú</h2>
+        <h2 class="text-xl px-4 font-bold">Menú</h2>
     </div>
 
     <ul class="space-y-2">
@@ -26,7 +26,7 @@
         </li>
         <li>
             <a
-                href="#"
+                href="{{route('producto.index')}}"
                 class="block px-4 py-2 hover:bg-gray-600 rounded"
             >
                 Productos
@@ -36,6 +36,8 @@
 
     <form method="POST" action="{{ route('logout') }}" x-data>
         @csrf
+
+        <p class="px-4 font-semibold">{{ Auth::user()->name }}</p>
 
         <x-dropdown-link href="{{ route('logout') }}" @click.prevent="$root.submit();">
             {{ __('Cerrar Sesión') }}

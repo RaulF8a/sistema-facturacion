@@ -24,7 +24,7 @@
                 <td class="border px-4 py-2">AD92</td>
                 <td class="border px-4 py-2">20/09/2024</td>
                 <td class="border px-4 py-2">Jorge Lopez</td>
-                <td class="border px-4 py-2"><a href="#">Ver</a></td>
+                <td class="border px-4 py-2"><a class="underline text-blue-600" href="#">Ver</a></td>
             </tr>
         </tbody>
     </table>
