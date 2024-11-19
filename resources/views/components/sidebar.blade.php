@@ -18,7 +18,7 @@
         </li>
         <li>
             <a
-                href="#"
+                href="{{route('cliente.index')}}"
                 class="block px-4 py-2 hover:bg-gray-600 rounded"
             >
                 Clientes
