@@ -52,6 +52,27 @@ class ProductoController extends Controller
     }
 
     public function edit(Producto $producto) {
-        dd($producto);
+        return view('producto.edit', ['producto' => $producto]);
+    }
+
+    public function update(Producto $producto, Request $request) {
+        $data = $request->validate([
+            'nombre' => 'required',
+            'descripcion' => 'required',
+            'precio' => 'required|decimal:0,2',
+            'impuesto' => 'required',
+        ]);
+
+        $producto->update($data);
+
+        return redirect(route('producto.index'))
+        ->with('success', 'ok');
+    }
+
+    public function remove(Producto $producto) {
+        $producto->delete();
+
+        return redirect(route('producto.index'))
+        ->with('success', 'ok');
     }
 }

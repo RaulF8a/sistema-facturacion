@@ -22,5 +22,7 @@ Route::middleware([
     // Creamos un metodo POST para la misma ruta para reaccionar cuando se envia el formulario.
     Route::post('/producto', [ProductoController::class, 'store'])->name('producto.store');
     // Podemos enviar parametros en las rutas colocandolos entre {}.
-    Route::get('/producto/{producto}', [ProductoController::class, 'edit'])->name('producto.edit');
+    Route::get('/producto/{producto}/edit', [ProductoController::class, 'edit'])->name('producto.edit');
+    Route::put('/producto/{producto}/update', [ProductoController::class, 'update'])->name('producto.update');
+    Route::delete('/producto/{producto}/remove', [ProductoController::class, 'remove'])->name('producto.remove');
 });

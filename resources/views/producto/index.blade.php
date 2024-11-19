@@ -26,3 +26,15 @@
         </div>
     </div>
 </x-app-layout>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+@if (session('success') == 'ok')
+    <script>
+        Swal.fire({
+            title: "Completado",
+            text: "Acción realizada con éxito",
+            icon: "success"
+        });
+    </script>
+@endif

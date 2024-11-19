@@ -27,10 +27,14 @@
                             Si
                         @endif
                     </td>
-                    <td class="border px-4 py-2"><x-action-icons :producto="$producto" /></td>
+                    <td class="border px-4 py-2">
+                        <x-action-icons :producto="$producto" />
+                    </td>
                 </tr>
             @endforeach
         </tbody>
     </table>
 </div>
 
+@push('js')
+@endpush
