@@ -35,4 +35,33 @@ class ClienteController extends Controller
         // Redireccionamos a la ventana principal.
         return redirect(route('cliente.index'));
     }
+
+    public function edit(Cliente $cliente) {
+        return view('cliente.edit', ['cliente' => $cliente]);
+    }
+
+    public function update(Cliente $cliente, Request $request) {
+        $data = $request->validate([
+            'nombre' => 'required',
+            'rfc' => 'required',
+            'domicilio' => 'required',
+            'regimen' => 'required',
+            'telefono' => 'required',
+            'email' => 'required',
+        ]);
+
+        $data['empresa_id'] = auth()->id();
+
+        $cliente->update($data);
+
+        return redirect(route('cliente.index'))
+        ->with('success', 'ok');
+    }
+
+    public function remove(Cliente $cliente) {
+        $cliente->delete();
+
+        return redirect(route('cliente.index'))
+        ->with('success', 'ok');
+    }
 }

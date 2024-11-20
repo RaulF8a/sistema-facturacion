@@ -22,7 +22,7 @@
                     <td class="border px-4 py-2">{{ $cliente->nombre }}</td>
                     <td class="border px-4 py-2">{{ $cliente->rfc }}</td>
                     <td class="border px-4 py-2">{{ $cliente->domicilio }}</td>
-                    <td class="border px-4 py-2">{{ $cliente->regimen }}</td>
+                    <td class="border px-4 py-2">{{ ucwords($cliente->regimen) }}</td>
                     <td class="border px-4 py-2">{{ $cliente->telefono }}</td>
                     <td class="border px-4 py-2">{{ $cliente->email }}</td>
                     <td class="border px-4 py-2">
