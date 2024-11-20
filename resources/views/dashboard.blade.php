@@ -8,12 +8,14 @@
                 Bienvenido a FacturaT
             </h1>
 
-            <button
-                class="text-xl text-white bg-success p-4 mb-8
-                font-bold"
-            >
-                Crear Factura
-            </button>
+            <a href="{{route('factura.create')}}">
+                <button
+                    class="text-xl text-white bg-success p-4 mb-8
+                    font-bold"
+                >
+                    Crear Factura
+                </button>
+            </a>
         </div>
 
         <div class="mx-auto sm:px-6 lg:px-8">

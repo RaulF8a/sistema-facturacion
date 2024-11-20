@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\FacturaController;
 use App\Http\Controllers\ProductoController;
 use Illuminate\Support\Facades\Route;
 
@@ -13,9 +15,7 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     // Productos
     Route::get('/producto', [ProductoController::class, 'index'])->name('producto.index');
@@ -34,4 +34,8 @@ Route::middleware([
     Route::get('/cliente/{cliente}/edit', [ClienteController::class, 'edit'])->name('cliente.edit');
     Route::put('/cliente/{cliente}/update', [ClienteController::class, 'update'])->name('cliente.update');
     Route::delete('/cliente/{cliente}/remove', [ClienteController::class, 'remove'])->name('cliente.remove');
+
+    // Factura
+    Route::get('/factura/create', [FacturaController::class, 'create'])->name('factura.create');
+    Route::post('/factura', [FacturaController::class, 'store'])->name('factura.store');
 });

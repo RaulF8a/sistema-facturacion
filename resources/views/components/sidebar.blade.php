@@ -10,7 +10,7 @@
     <ul class="space-y-2">
         <li>
             <a
-                href="#"
+                href="/dashboard"
                 class="block px-4 py-2 hover:bg-gray-600 rounded"
             >
                 Inicio
