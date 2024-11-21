@@ -94,6 +94,12 @@
                 </table>
             </div>
 
+            <div class="mt-4">
+                <x-label for="total" value="{{ __('Total') }}" />
+                <x-input id="total" class="block mt-1 w-1/2 total" type="text" readonly
+                name="total" placeholder="$0" required autofocus />
+            </div>
+
             <div
                 class="text-white text-lg text-center font-semibold
                 bg-success w-1/2 mt-6 justify-center"
@@ -109,10 +115,12 @@
         const selectedProductsTable = document.getElementById('selected-products-table');
         const invoiceForm = document.getElementById('invoice-form');
         const selectedProductsInput = document.getElementById('selected-products-input');
+        const totalInput = document.getElementById('total');
 
         const productos = @json($productos);
 
         let products = [];
+        let totalFactura = 0;
 
         addProductButton.addEventListener('click', () => {
             const productSelect = document.getElementById('producto_id');
@@ -123,9 +131,6 @@
             const quantity = quantityInput.value;
 
             if (productId && quantity > 0) {
-                // Add product to the array
-                products.push({ producto_id: productId, cantidad: parseInt(quantity) });
-
                 const producto = productos.find(p => p.id == productId);
 
                 const price = producto.precio;
@@ -135,6 +140,12 @@
                 if(impuesto === 1){
                     totalPrice += totalPrice * 0.16;
                 }
+
+                // Add product to the array
+                products.push({ producto_id: productId, cantidad: parseInt(quantity), total: totalPrice.toFixed(2) });
+
+
+                totalFactura += totalPrice;
 
                 // Add row to the table
                 const row = document.createElement('tr');
@@ -153,14 +164,36 @@
 
                 // Remove product logic
                 row.querySelector('.remove-product').addEventListener('click', () => {
-                    // Remove product from the array
-                    products = products.filter(product => product.producto_id !== productId);
+                    const productToRemove = products.find(product => product.producto_id === productId);
 
-                    // Remove row from the table
-                    row.remove();
+                    if (productToRemove) {
+                        // Calculate the product's total price
+                        const producto = productos.find(p => p.id == productToRemove.producto_id);
+                        const price = producto.precio;
+                        const quantity = productToRemove.cantidad;
+
+                        let totalPrice = price * quantity;
+                        if (producto.impuesto === 1) {
+                            totalPrice += totalPrice * 0.16;
+                        }
+
+                        // Subtract the product's total price from totalFactura
+                        totalFactura -= totalPrice;
+
+                        // Update the displayed total
+                        totalInput.value = '$' + totalFactura.toFixed(2);
+
+                        // Remove product from the array
+                        products = products.filter(product => product.producto_id !== productId);
+
+                        // Remove row from the table
+                        row.remove();
+                    }
+
                 });
 
                 selectedProductsTable.appendChild(row);
+                totalInput.value = '$' + totalFactura.toFixed(2);
 
                 // Reset fields
                 productSelect.value = '';
@@ -180,6 +213,7 @@
 
             // Pass the products array as JSON to the hidden input
             selectedProductsInput.value = JSON.stringify(products);
+            totalInput.value = totalFactura.toFixed(2);
         });
     });
 </script>

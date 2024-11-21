@@ -2,8 +2,10 @@
 
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DetalleFacturaController;
 use App\Http\Controllers\FacturaController;
 use App\Http\Controllers\ProductoController;
+use App\Models\DetalleFactura;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -38,4 +40,6 @@ Route::middleware([
     // Factura
     Route::get('/factura/create', [FacturaController::class, 'create'])->name('factura.create');
     Route::post('/factura', [FacturaController::class, 'store'])->name('factura.store');
+
+    Route::get('/detalle/{factura}', [DetalleFacturaController::class, 'index'])->name('detalle.index');
 });

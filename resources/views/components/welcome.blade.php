@@ -1,3 +1,5 @@
+@props(['facturas', 'clientes'])
+
 <div class="p-6 lg:p-8 bg-white border-b border-gray-200">
     <h1 class="mt-4 text-2xl font-medium text-gray-900">
         Historial de Facturas
@@ -20,12 +22,24 @@
             </tr>
         </thead>
         <tbody>
-            <tr class="hover:bg-gray-100">
-                <td class="border px-4 py-2">AD92</td>
-                <td class="border px-4 py-2">20/09/2024</td>
-                <td class="border px-4 py-2">Jorge Lopez</td>
-                <td class="border px-4 py-2"><a class="underline text-blue-600" href="#">Ver</a></td>
-            </tr>
+            @foreach ($facturas as $factura)
+                <tr class="hover:bg-gray-100">
+                    <td class="border px-4 py-2">{{$factura->folio}}</td>
+                    <td class="border px-4 py-2">{{$factura->fecha}}</td>
+                    <td class="border px-4 py-2">
+                        {{ collect($clientes)->firstWhere('id',
+                        $factura->cliente_id)->nombre ?? 'Cliente no encontrado' }}
+                    </td>
+                    <td class="border px-4 py-2">
+                        <a
+                            class="underline text-blue-600"
+                            href="{{ route('detalle.index', ['factura' => $factura]) }}"
+                        >
+                            Ver
+                        </a>
+                    </td>
+                </tr>
+            @endforeach
         </tbody>
     </table>
 </div>
