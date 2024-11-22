@@ -10,8 +10,8 @@ class DashboardController extends Controller
 {
     //
     public function index() {
-        $facturas = Factura::all();
-        $clientes = Cliente::all();
+        $facturas = Factura::where('empresa_id', auth()->id())->get();
+        $clientes = Cliente::where('empresa_id', auth()->id())->get();
 
         return view('dashboard', ['facturas' => $facturas, 'clientes' => $clientes]);
     }

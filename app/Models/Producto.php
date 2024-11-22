@@ -19,5 +19,6 @@ class Producto extends Model
         'descripcion',
         'precio',
         'impuesto',
+        'empresa_id',
     ];
 }

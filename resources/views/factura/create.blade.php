@@ -60,7 +60,7 @@
                 <div class="mt-4">
                     <x-label for="cantidad" value="{{ __('Cantidad') }}" />
                     <x-input id="cantidad" class="block mt-1 w-1/2 cantidad" type="number" min="1"
-                    name="cantidad" :value="old('cantidad')" required autofocus />
+                    name="cantidad" value="1" required autofocus />
                 </div>
 
                 <div class="mt-10">
@@ -156,7 +156,7 @@
                     <td class="border px-4 py-2">${price}</td>
                     <td class="border px-4 py-2">${quantity}</td>
                     <td class="border px-4 py-2">${impuesto === 1 ? 'Si' : 'No'}</td>
-                    <td class="border px-4 py-2">${totalPrice}</td>
+                    <td class="border px-4 py-2">${totalPrice.toFixed(2)}</td>
                     <td>
                         <button class="btn btn-danger btn-sm remove-product">Quitar</button>
                     </td>
@@ -177,16 +177,12 @@
                             totalPrice += totalPrice * 0.16;
                         }
 
-                        // Subtract the product's total price from totalFactura
                         totalFactura -= totalPrice;
 
-                        // Update the displayed total
                         totalInput.value = '$' + totalFactura.toFixed(2);
 
-                        // Remove product from the array
                         products = products.filter(product => product.producto_id !== productId);
 
-                        // Remove row from the table
                         row.remove();
                     }
 
@@ -195,7 +191,6 @@
                 selectedProductsTable.appendChild(row);
                 totalInput.value = '$' + totalFactura.toFixed(2);
 
-                // Reset fields
                 productSelect.value = '';
                 quantityInput.value = '1';
             } else {

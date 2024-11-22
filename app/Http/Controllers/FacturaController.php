@@ -30,8 +30,8 @@ class FacturaController extends Controller
     }
 
     public function create() {
-        $productos = Producto::all();
-        $clientes = Cliente::all();
+        $productos = Producto::where('empresa_id', auth()->id())->get();
+        $clientes = Cliente::where('empresa_id', auth()->id())->get();
 
         return view('factura.create', ['productos' => $productos, 'clientes' => $clientes]);
     }

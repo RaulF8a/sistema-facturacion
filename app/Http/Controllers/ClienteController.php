@@ -3,12 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cliente;
+use Auth;
 use Illuminate\Http\Request;
 
 class ClienteController extends Controller
 {
     public function index(){
-        $clientes = Cliente::all();
+        $clientes = Cliente::where('empresa_id', auth()->id())->get();
 
         return view('cliente.index', ['clientes' => $clientes]);
     }

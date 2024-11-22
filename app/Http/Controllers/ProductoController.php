@@ -21,7 +21,7 @@ class ProductoController extends Controller
     // el nombre del archivo sin las extensiones.
     public function index(){
         // Obtenemos los productos de la base de datos.
-        $productos = Producto::all();
+        $productos = Producto::where('empresa_id', auth()->id())->get();
 
         // Se envia un parametro a la vista. Usando el identificador entre '' podemos
         // acceder a los datos en la vista.
@@ -43,6 +43,8 @@ class ProductoController extends Controller
             'precio' => 'required|decimal:0,2',
             'impuesto' => 'required',
         ]);
+
+        $data['empresa_id'] = auth()->id();
 
         // Para insertar en la BD lo hacemos mediante el modelo.
         $newProduct = Producto::create($data);

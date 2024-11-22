@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('descripcion');
             $table->decimal('precio');
             $table->integer('impuesto');
+            $table->integer('empresa_id');
             $table->timestamps();
         });
     }
