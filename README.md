@@ -46,3 +46,17 @@ php artisan migrate
 ```
 php artisan serve
 ```
+
+<h4>Imágenes</h4>
+
+![image info](./assets/main.png)
+
+![image info](./assets/dashboard.png)
+
+![image info](./assets/cliente.png)
+
+![image info](./assets/producto.png)
+
+![image info](./assets/crear_factura.png)
+
+![image info](./assets/factura.png)
