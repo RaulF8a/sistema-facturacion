@@ -153,12 +153,12 @@
 
                 row.innerHTML = `
                     <td class="border px-4 py-2">${productName}</td>
-                    <td class="border px-4 py-2">${price}</td>
+                    <td class="border px-4 py-2">$${price}</td>
                     <td class="border px-4 py-2">${quantity}</td>
                     <td class="border px-4 py-2">${impuesto === 1 ? 'Si' : 'No'}</td>
-                    <td class="border px-4 py-2">${totalPrice.toFixed(2)}</td>
+                    <td class="border px-4 py-2">$${totalPrice.toFixed(2)}</td>
                     <td>
-                        <button class="btn btn-danger btn-sm remove-product">Quitar</button>
+                        <button class="btn btn-danger btn-sm remove-product text-lg font-semibold underline text-red-600">Quitar</button>
                     </td>
                 `;
 
